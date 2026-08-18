@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EyeBrowse</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      width: 300px;
+      padding: 16px;
+      background: #1e1e2e;
+      color: #cdd6f4;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    label { font-size: 13px; }
+    .switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background: #45475a;
+      border-radius: 24px;
+      transition: 0.2s;
+    }
+    .slider:before {
+      content: "";
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.2s;
+    }
+    input:checked + .slider { background: #00aaff; }
+    input:checked + .slider:before { transform: translateX(20px); }
+
+    input[type="range"] {
+      width: 100%;
+      margin-top: 6px;
+      accent-color: #00aaff;
+    }
+    .value {
+      font-size: 12px;
+      color: #a6adc8;
+      min-width: 48px;
+      text-align: right;
+    }
+    .site-box {
+      background: #313244;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      font-size: 12px;
+    }
+    .site-host {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: #89b4fa;
+      word-break: break-all;
+      margin-bottom: 6px;
+    }
+    .site-status {
+      color: #a6adc8;
+      margin-bottom: 8px;
+    }
+    .site-status.active { color: #a6e3a1; }
+    .site-status.blocked { color: #f38ba8; }
+    .site-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .site-actions button {
+      background: #45475a;
+      color: #cdd6f4;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 8px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+    .site-actions button:hover { background: #585b70; }
+    .site-actions button.primary {
+      background: #00aaff;
+      color: #1e1e2e;
+      font-weight: 600;
+    }
+    .site-actions button.primary:hover { background: #33bbff; }
+    .footer {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #313244;
+      font-size: 12px;
+      color: #a6adc8;
+      display: flex;
+      justify-content: space-between;
+    }
+    a {
+      color: #00aaff;
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>
+    <span style="font-size:20px">👁</span>
+    EyeBrowse
+  </h1>
+
+  <div class="row">
+    <label for="enabled">Enabled</label>
+    <label class="switch">
+      <input type="checkbox" id="enabled" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div>
+    <div class="row" style="margin-bottom:4px">
+      <label for="dwellTime">Dwell time</label>
+      <span class="value" id="dwellValue">1000 ms</span>
+    </div>
+    <input type="range" id="dwellTime" min="400" max="3000" step="50" />
+  </div>
+
+  <div class="site-box" id="siteBox" style="display:none; margin-top:14px">
+    <div class="site-host" id="siteHost">—</div>
+    <div class="site-status" id="siteStatus">—</div>
+    <div class="site-actions" id="siteActions"></div>
+  </div>
+
+  <div class="footer">
+    <a href="#" id="openOptions">More options</a>
+    <span>v1.3.0</span>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
