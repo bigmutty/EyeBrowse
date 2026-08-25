@@ -4,6 +4,8 @@ Browser extension that activates links and other clickable elements when the mou
 
 Designed for people who use eye trackers (Tobii, Windows Eye Control, etc.) that move the system mouse pointer to the gaze location.
 
+This project is still in an early stage of development; therefore, bugs are to be expected.
+
 ## Features
 
 - **Dwell-to-click** – Hold the cursor over a clickable element for the configured time → it is activated.
